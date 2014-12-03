@@ -7,20 +7,25 @@ defmodule WikiFootnotes.CLI do
   end
 
   def process(:usage) do
-    IO.puts "Usage: wfootnotes <theme>"
+    IO.puts "Usage: wfootnotes <page>"
     System.halt(0)
   end
 
-  def process(theme) do
-    WikiFootnotes.fetch(theme)
+  def process(page) do
+    WikiFootnotes.fetch(page)
   end
 
   def parse_args(argv) do
     parse = OptionParser.parse(argv)
 
     case parse do
-      { _, [theme], _} -> theme
-      _ -> :usage
+      { _, [page], _} -> 
+        if Regex.match?(~r/http:/, page) do
+          {:url, page}
+        else 
+          page
+        end
+       _ -> :usage
     end
   end
 end
