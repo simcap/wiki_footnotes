@@ -3,10 +3,10 @@ WikiFootnotes
 
 Listing wikipedia footnotes of a page from your command line
 
-  $ wiki_footnotes Elixir
+from a topic
 
-or 
+    $ wiki_footnotes elixir
 
-  $ wiki_footnotes http://en.wikipedia.org/wiki/Elixir
+from a url 
 
-will returns
+    $ wiki_footnotes http://en.wikipedia.org/wiki/Elixir
