@@ -1,4 +1,7 @@
 defmodule WikiFootnotes do
+  require Logger
+  
+  @root_url Application.get_env(:wikipedia, :root_url)
 
   def fetch({:url, url}) do
     _fetch(url)
@@ -9,6 +12,7 @@ defmodule WikiFootnotes do
   end
 
   def _fetch(url) do
+    Logger.info "Fetching content at #{url}"
     url
       |> HTTPoison.get
       |> handle_response
@@ -25,6 +29,6 @@ defmodule WikiFootnotes do
   defp handle_response({:error, %{id: _, reason: reason}}), do: reason 
 
   defp wikipedia_url(subject) do
-    "http://en.wikipedia.org/wiki/#{String.capitalize(subject)}"
+    "#{@root_url}/#{String.capitalize(subject)}"
   end
 end

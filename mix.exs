@@ -5,6 +5,7 @@ defmodule WikiFootnotes.Mixfile do
     [app: :wiki_footnotes,
      version: "0.0.1",
      elixir: "~> 1.0",
+     escript: [main_module: WikiFootnotes.CLI],
      deps: deps]
   end
 
