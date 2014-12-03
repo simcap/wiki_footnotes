@@ -1,0 +1,2 @@
+defmodule WikiFootnotes do
+end
