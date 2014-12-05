@@ -6,11 +6,6 @@ defmodule WikiFootnotes.CLI do
       |> process
   end
 
-  def process(:usage) do
-    IO.puts "Usage: wfootnotes <page>"
-    System.halt(0)
-  end
-
   def process(page) do
     WikiFootnotes.fetch(page)
   end
@@ -25,7 +20,16 @@ defmodule WikiFootnotes.CLI do
         else 
           page
         end
-       _ -> :usage
+      {_, [start|trail], _} ->
+        topic = ([start] ++ trail) |> Enum.join("_")
+        if Regex.match?(~r/http:/, topic) do
+          {:url, topic}
+        else 
+          topic
+        end
+       _ -> 
+        IO.puts "Usage: wfootnotes <page>"
+        System.halt(0)
     end
   end
 end

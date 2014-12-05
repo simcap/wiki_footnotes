@@ -32,15 +32,17 @@ defmodule WikiFootnotes do
   defp handle_response({:ok, %{status_code: 301, headers: headers}}) do
     _fetch(headers["Location"])
   end
+  defp handle_response({:ok, %{status_code: 404, body: body}}) do
+    IO.puts "Do not know this Wikipedia page"
+    System.halt(0)
+  end
   defp handle_response({:ok, %{status_code: status, headers: headers}}) do
-    "Unexpected #{status} http code\n#{IO.inspect(headers)}"
+    IO.puts "Unexpected #{status} http code\n#{IO.inspect(headers)}"
+    System.halt(0)
   end
   defp handle_response({:error, %{id: _, reason: reason}}), do: reason 
 
   defp wikipedia_url(subject) do
-    wiki_formatted_subject = subject
-      |> String.capitalize
-      |> String.replace(~r/\s+/, "_")
-    "#{@root_url}/#{wiki_formatted_subject}"
+    "#{@root_url}/#{String.capitalize(subject)}"
   end
 end
