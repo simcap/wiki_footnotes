@@ -16,7 +16,12 @@ defmodule WikiFootnotes do
     url
       |> HTTPoison.get
       |> handle_response
-      |> IO.puts
+      |> WikiFootnotes.Parser.run
+      |> console_display
+  end
+
+  defp console_display(hrefs_and_text) do
+    hrefs_and_text |> Enum.map(&(Enum.join(&1, "\t\t"))) |> Enum.join("\n") |> IO.puts
   end
 
   defp handle_response({:ok, %{status_code: 200, body: body}}), do: body
