@@ -21,7 +21,11 @@ defmodule WikiFootnotes do
   end
 
   defp console_display(hrefs_and_text) do
-    hrefs_and_text |> Enum.map(&(Enum.join(&1, "\t\t"))) |> Enum.join("\n") |> IO.puts
+    hrefs_and_text 
+      |> Enum.map(fn [a,b] -> if a == b, do: ["_", b], else: [a,b] end)
+      |> Enum.map(fn [a,b] -> [String.ljust(a, 40), b] end)
+      |> Enum.map(&Enum.join/1) |> Enum.join("\n")
+      |> IO.puts
   end
 
   defp handle_response({:ok, %{status_code: 200, body: body}}), do: body
