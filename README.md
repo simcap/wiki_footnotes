@@ -1,12 +1,20 @@
-WikiFootnotes
-=============
+# WikiFootnotes
 
-Listing wikipedia footnotes of a page from your command line
+Listing http links footnotes of a Wikipedia page from your command line
 
-from a topic
+# Install
 
-    $ wiki_footnotes elixir
+Install Erlang or Elixir (`brew install elixir` will get you both)
 
-from a url 
+# Usage
+
+From the command line enter a topic
+
+    $ wiki_footnotes elixir         # To get footnotes on the Elixir language
+    $ wiki_footnotes thomas paine   # To get footnotes on the great Thomas Paine
+
+... or straight from a url
 
     $ wiki_footnotes http://en.wikipedia.org/wiki/Elixir
+
+You will get an readable listing of all http links from the page's footnotes

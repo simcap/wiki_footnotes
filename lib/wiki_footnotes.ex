@@ -23,7 +23,7 @@ defmodule WikiFootnotes do
   defp console_display(hrefs_and_text) do
     hrefs_and_text 
       |> Enum.map(fn [a,b] -> if a == b, do: ["_", b], else: [a,b] end)
-      |> Enum.map(fn [a,b] -> [String.ljust(a, 40), b] end)
+      |> Enum.map(fn [a,b] -> [String.ljust(a, 50), b] end)
       |> Enum.map(&Enum.join/1) |> Enum.join("\n")
       |> IO.puts
   end
@@ -38,6 +38,9 @@ defmodule WikiFootnotes do
   defp handle_response({:error, %{id: _, reason: reason}}), do: reason 
 
   defp wikipedia_url(subject) do
-    "#{@root_url}/#{String.capitalize(subject)}"
+    wiki_formatted_subject = subject
+      |> String.capitalize
+      |> String.replace(~r/\s+/, "_")
+    "#{@root_url}/#{wiki_formatted_subject}"
   end
 end
