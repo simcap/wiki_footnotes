@@ -8,6 +8,7 @@ Listing http links footnotes of a Wikipedia page from your command line
 * Get the binary executable with
 
 
+
     $ wget https://raw.githubusercontent.com/simcap/wiki_footnotes/master/wiki_footnotes
     $ chmod +x wiki_footnotes
 
