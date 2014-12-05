@@ -7,10 +7,8 @@ Listing http links footnotes of a Wikipedia page from your command line
 * Install Erlang or Elixir (`brew install elixir` will get you both)
 * Get the binary executable with
 
-
-
-    $ wget https://raw.githubusercontent.com/simcap/wiki_footnotes/master/wiki_footnotes
-    $ chmod +x wiki_footnotes
+      $ wget https://raw.githubusercontent.com/simcap/wiki_footnotes/master/wiki_footnotes
+      $ chmod +x wiki_footnotes
 
 # Usage
 
